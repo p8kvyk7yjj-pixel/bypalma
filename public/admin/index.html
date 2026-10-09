@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>PALMA Yönetim Paneli</title>
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div id="gate" class="gate" hidden></div>
+<div id="app" class="app" hidden>
+  <aside class="side" id="side">
+    <a class="brand" href="./"><svg viewBox="0 0 64 80" width="22" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M32 78V40"/><path d="M32 40C30 28 31 14 32 4C33 14 34 28 32 40Z"/><path d="M32 42C24 32 16 24 6 20C14 30 22 38 32 44"/><path d="M32 42C40 32 48 24 58 20C50 30 42 38 32 44"/><path d="M32 46C22 40 12 38 3 40C13 46 23 50 32 50"/><path d="M32 46C42 40 52 38 61 40C51 46 41 50 32 50"/></svg><span>PALMA</span><small>Yönetim</small></a>
+    <nav class="tabs" id="tabs" aria-label="Bölümler"></nav>
+    <div class="side-foot">
+      <a class="btn ghost sm" href="../" target="_blank" rel="noopener">Siteyi aç</a>
+      <button class="btn ghost sm" id="logout" type="button">Çıkış</button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="demo" id="demoNote" hidden>Demo modu: veriler yalnızca bu tarayıcıda saklanır. Gerçek sipariş almak için siteyi sunucuya kurun (README).</div>
+    <div id="view" class="view"></div>
+  </main>
+</div>
+<div class="sheet-bg" id="sheetBg" hidden></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../js/core.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>
