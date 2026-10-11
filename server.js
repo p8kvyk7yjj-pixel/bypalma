@@ -11,10 +11,12 @@ const Core = require('./public/js/core.js');
 
 const PORT = Number(process.env.PORT) || 3000;
 const ROOT = path.join(__dirname, 'public');
-const DATA = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
+const DATA = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR)
+  : (fs.existsSync('/data') ? '/data' : path.join(__dirname, 'data'));
 const UPLOADS = path.join(DATA, 'uploads');
 const DB_FILE = path.join(DATA, 'db.json');
 fs.mkdirSync(UPLOADS, { recursive: true });
+console.log('PALMA data folder:', DATA);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
@@ -28,7 +30,16 @@ let cache = null;
 let writing = Promise.resolve();
 async function load() {
   if (cache) return cache;
-  try { cache = JSON.parse(await fsp.readFile(DB_FILE, 'utf8')); } catch (e) { cache = null; }
+  let raw = null;
+  try { raw = await fsp.readFile(DB_FILE, 'utf8'); } catch (e) { raw = null; }
+  if (raw !== null) {
+    try { cache = JSON.parse(raw); } catch (e) {
+      // never start from an empty database over a damaged file: keep a copy and try the last backup
+      try { await fsp.writeFile(DB_FILE + '.corrupt-' + Date.now(), raw); } catch (e2) {}
+      console.error('db.json unreadable, trying db.json.bak', e.message);
+      try { cache = JSON.parse(await fsp.readFile(DB_FILE + '.bak', 'utf8')); } catch (e3) { cache = null; }
+    }
+  }
   if (cache && process.env.ADMIN_PASSWORD && !cache.admin) await presetAdmin(cache);
   return cache;
 }
@@ -42,6 +53,7 @@ function save(db) {
   writing = writing.then(async () => {
     const tmp = DB_FILE + '.tmp';
     await fsp.writeFile(tmp, json);
+    try { await fsp.copyFile(DB_FILE, DB_FILE + '.bak'); } catch (e) {}
     await fsp.rename(tmp, DB_FILE);
   }).catch((e) => console.error('save failed', e));
   return writing;

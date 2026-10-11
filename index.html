@@ -1,246 +1,37 @@
 <!doctype html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PALMA — цветочный бутик в Душанбе</title>
-<meta name="description" content="PALMA by.palma.tj: авторские букеты, корзины и живые растения с доставкой по Душанбе.">
-<meta name="theme-color" content="#0b0b09">
-<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<title>PALMA Yönetim Paneli</title>
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Forum&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-
-<header class="nav" id="nav">
-<div class="announce" id="announce" hidden><span id="announceText"></span></div>
-<div class="nav-bar">
-  <a class="brand" href="#story" aria-label="PALMA">
-    <svg class="brand-mark" viewBox="0 0 64 80" aria-hidden="true"><use href="#palm"/></svg>
-    <span class="brand-word">PALMA</span>
-  </a>
-  <nav class="nav-links" id="navLinks" aria-label="Menu">
-    <a href="#catalog" data-i="nav.catalog"></a>
-    <a href="#initial" data-i="nav.initial"></a>
-    <a href="#custom" data-i="nav.custom"></a>
-    <a href="#delivery" data-i="nav.delivery"></a>
-    <a href="#contact" data-i="nav.contact"></a>
-  </nav>
-  <div class="nav-tools">
-    <div class="lang" id="lang" role="group" aria-label="Language"></div>
-    <button class="cart-btn" id="cartBtn" type="button" aria-label="Cart">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
-  </div>
+<div id="gate" class="gate" hidden></div>
+<div id="app" class="app" hidden>
+  <aside class="side" id="side">
+    <a class="brand" href="./"><svg viewBox="0 0 64 80" width="22" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M32 78V40"/><path d="M32 40C30 28 31 14 32 4C33 14 34 28 32 40Z"/><path d="M32 42C24 32 16 24 6 20C14 30 22 38 32 44"/><path d="M32 42C40 32 48 24 58 20C50 30 42 38 32 44"/><path d="M32 46C22 40 12 38 3 40C13 46 23 50 32 50"/><path d="M32 46C42 40 52 38 61 40C51 46 41 50 32 50"/></svg><span>PALMA</span><small>Yönetim</small></a>
+    <nav class="tabs" id="tabs" aria-label="Bölümler"></nav>
+    <div class="side-foot">
+      <a class="btn ghost sm" href="../" target="_blank" rel="noopener">Siteyi aç</a>
+      <button class="btn ghost sm" id="logout" type="button">Çıkış</button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="demo" id="demoNote" hidden>Demo modu: veriler yalnızca bu tarayıcıda saklanır. Gerçek sipariş almak için siteyi sunucuya kurun (README).</div>
+    <div id="view" class="view"></div>
+  </main>
 </div>
-</header>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="palm" viewBox="0 0 64 80">
-      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M32 78V40"/>
-        <path d="M32 40C30 28 31 14 32 4C33 14 34 28 32 40Z"/>
-        <path d="M32 42C24 32 16 24 6 20C14 30 22 38 32 44"/>
-        <path d="M32 42C40 32 48 24 58 20C50 30 42 38 32 44"/>
-        <path d="M32 46C22 40 12 38 3 40C13 46 23 50 32 50"/>
-        <path d="M32 46C42 40 52 38 61 40C51 46 41 50 32 50"/>
-        <path d="M32 54C26 52 20 52 14 54C20 58 27 58 32 58"/>
-        <path d="M32 54C38 52 44 52 50 54C44 58 37 58 32 58"/>
-      </g>
-    </symbol>
-  </defs>
-</svg>
-
-<main>
-<!-- ================= STORY: scroll-driven walk into the shop ================= -->
-<section class="story" id="story" aria-label="PALMA">
-  <div class="stage" id="stage">
-    <div class="backdrop" aria-hidden="true">
-      <img class="bd bd-store" src="img/store-tex.jpg" alt="">
-      <img class="bd bd-walk" src="img/walk3-tex.jpg" alt="">
-      <div class="bd-shade"></div>
-    </div>
-    <div class="scene" id="scene">
-      <div class="cards" id="cards"></div>
-      <div class="portal portal-store" id="pStore">
-        <div class="arch"><video id="vStore" muted loop playsinline preload="metadata" poster="img/store-tex.jpg" src="video/storefront.mp4"></video></div>
-      </div>
-      <div class="portal portal-walk" id="pWalk">
-        <div class="arch"><video id="vWalk" muted playsinline preload="auto" poster="img/walk3-tex.jpg" src="video/walk.mp4"></video></div>
-      </div>
-      <div class="plate" id="plate">
-        <video id="vSign" muted loop playsinline preload="metadata" poster="img/sign-tex.jpg" src="video/sign.mp4"></video>
-      </div>
-    </div>
-    <canvas class="petals" id="petals" aria-hidden="true"></canvas>
-
-    <div class="chapter ch-a" id="chA">
-      <p class="eyebrow" id="heroEyebrow"></p>
-      <h1 class="display" id="heroTitle"></h1>
-      <p class="lede" id="heroSub"></p>
-      <div class="cta-row">
-        <a class="btn btn-gold" href="#catalog" data-i="hero.catalog"></a>
-        <button class="btn btn-ghost" type="button" data-wa="generic"><span data-i="hero.whatsapp"></span></button>
-      </div>
-    </div>
-    <div class="chapter ch-b" id="chB">
-      <p class="eyebrow" data-i="story.b.eyebrow"></p>
-      <h2 class="display" data-i="story.b.title"></h2>
-      <p class="lede" data-i="story.b.text"></p>
-    </div>
-    <div class="chapter ch-c" id="chC">
-      <p class="eyebrow" data-i="story.c.eyebrow"></p>
-      <h2 class="display" data-i="story.c.title"></h2>
-      <p class="lede" data-i="story.c.text"></p>
-    </div>
-    <div class="chapter ch-d" id="chD">
-      <p class="eyebrow" data-i="story.d.eyebrow"></p>
-      <h2 class="display" data-i="story.d.title"></h2>
-      <p class="lede" data-i="story.d.text"></p>
-      <div class="cta-row"><a class="btn btn-gold" href="#catalog" data-i="story.d.cta"></a></div>
-    </div>
-
-    <ol class="dots" id="dots" aria-label="Chapters">
-      <li><button type="button" data-go="0" aria-label="1"></button></li>
-      <li><button type="button" data-go="0.40" aria-label="2"></button></li>
-      <li><button type="button" data-go="0.62" aria-label="3"></button></li>
-      <li><button type="button" data-go="0.92" aria-label="4"></button></li>
-    </ol>
-    <div class="hint" id="hint"><span data-i="hero.scroll"></span><i></i></div>
-    <div class="story-fade" id="storyFade"></div>
-  </div>
-</section>
-
-<div class="ribbon" aria-hidden="true">
-  <div class="ribbon-track">
-    <span>Гулҳо ◆ Цветы ◆ Flowers ◆ Çiçekler ◆ Гулҳо ◆ Цветы ◆ Flowers ◆ Çiçekler ◆ </span>
-    <span>Гулҳо ◆ Цветы ◆ Flowers ◆ Çiçekler ◆ Гулҳо ◆ Цветы ◆ Flowers ◆ Çiçekler ◆ </span>
-  </div>
-</div>
-
-<!-- ================= CATALOG ================= -->
-<section class="sec light marble" id="catalog" data-tone="light">
-  <div class="wrap">
-    <header class="sec-head reveal">
-      <h2 class="h2" data-i="cat.title"></h2>
-      <p class="sub" data-i="cat.sub"></p>
-    </header>
-    <div class="chips" id="catChips" role="tablist"></div>
-    <div class="grid" id="grid" aria-live="polite"></div>
-  </div>
-</section>
-
-<!-- ================= INITIAL BUILDER ================= -->
-<section class="sec dark" id="initial" data-tone="dark">
-  <div class="wrap two">
-    <div class="ini-copy reveal">
-      <p class="eyebrow" data-i="ini.eyebrow"></p>
-      <h2 class="h2" data-i="ini.title"></h2>
-      <p class="sub" data-i="ini.text"></p>
-      <div class="field">
-        <label for="iniLetter" data-i="ini.letter"></label>
-        <input id="iniLetter" class="input letter-input" maxlength="2" value="M" autocomplete="off" inputmode="text">
-      </div>
-      <div class="field">
-        <span class="label" data-i="ini.size"></span>
-        <div class="seg" id="iniSizes"></div>
-      </div>
-      <div class="ini-buy">
-        <div class="price-big"><span class="muted" data-i="ini.price"></span> <strong id="iniPrice"></strong></div>
-        <button class="btn btn-gold" type="button" id="iniAdd" data-i="ini.add"></button>
-      </div>
-    </div>
-    <div class="ini-stage reveal" id="iniStage">
-      <div class="ini-tilt" id="iniTilt">
-        <canvas id="iniCanvas" width="900" height="900" aria-label="Basket preview"></canvas>
-      </div>
-      <figure class="polaroid"><img src="img/basket-sm.webp" alt="" loading="lazy"></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CUSTOM ORDER ================= -->
-<section class="sec light marble" id="custom" data-tone="light">
-  <div class="wrap two custom">
-    <div class="reveal">
-      <p class="eyebrow dark-text" data-i="cu.eyebrow"></p>
-      <h2 class="h2" data-i="cu.title"></h2>
-      <p class="sub" data-i="cu.text"></p>
-      <figure class="stack-photos" aria-hidden="true">
-        <img src="img/umbrella-sm.webp" alt="" loading="lazy">
-        <img src="img/daisies-sm.webp" alt="" loading="lazy">
-      </figure>
-    </div>
-    <form class="card-form reveal" id="customForm" novalidate>
-      <div class="field"><span class="label" data-i="cu.style"></span><div class="chip-set" id="cuStyle"></div></div>
-      <div class="field"><span class="label" data-i="cu.colors"></span><div class="chip-set swatches" id="cuColors"></div></div>
-      <div class="field"><span class="label" data-i="cu.flowers"></span><div class="chip-set" id="cuFlowers"></div></div>
-      <div class="field"><span class="label" data-i="cu.wrap"></span><div class="chip-set" id="cuWrap"></div></div>
-      <div class="field">
-        <label for="cuBudget"><span data-i="cu.budget"></span>: <strong id="cuBudgetVal"></strong></label>
-        <input type="range" id="cuBudget" min="200" max="5000" step="50" value="600">
-      </div>
-      <div class="field"><label for="cuText" data-i="cu.wish"></label><textarea id="cuText" class="input" rows="3" data-i-ph="cu.wishHint"></textarea></div>
-      <div class="row2">
-        <div class="field"><label for="cuName" data-i="co.name"></label><input id="cuName" class="input" autocomplete="name"></div>
-        <div class="field"><label for="cuPhone" data-i="co.phone"></label><input id="cuPhone" class="input" type="tel" autocomplete="tel" inputmode="tel"></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label for="cuAddress" data-i="co.address"></label><input id="cuAddress" class="input" autocomplete="street-address"></div>
-        <div class="field"><label for="cuDate" data-i="co.date"></label><input id="cuDate" class="input" type="date"></div>
-      </div>
-      <p class="form-error" id="cuError" role="alert" hidden></p>
-      <button class="btn btn-ink" type="submit" id="cuSubmit" data-i="cu.submit"></button>
-    </form>
-  </div>
-</section>
-
-<!-- ================= DELIVERY / CONTACT ================= -->
-<section class="sec dark" id="delivery" data-tone="dark">
-  <div class="wrap two">
-    <div class="reveal">
-      <p class="eyebrow" data-i="del.eyebrow"></p>
-      <h2 class="h2" data-i="del.title"></h2>
-      <ul class="facts" id="facts"></ul>
-      <p class="sub" id="zones"></p>
-    </div>
-    <div class="contact-card reveal" id="contact">
-      <div class="arch arch-sm"><video id="vStore2" muted loop playsinline preload="none" poster="img/store-tex.jpg" data-src="video/storefront.mp4"></video></div>
-      <dl class="contact-list" id="contactList"></dl>
-      <div class="cta-row" id="contactBtns"></div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer class="footer" data-tone="dark">
-  <div class="wrap foot">
-    <a class="brand" href="#story"><svg class="brand-mark" viewBox="0 0 64 80" aria-hidden="true"><use href="#palm"/></svg><span class="brand-word">PALMA</span></a>
-    <p class="muted"><span id="footIg"></span> · © <span id="year"></span> <span data-i="foot.rights"></span></p>
-    <a class="muted small" href="admin/" data-i="foot.admin"></a>
-  </div>
-</footer>
-
-<button class="wa-fab" id="waFab" type="button" data-wa="generic" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.4.7 4.6 1.9 6.5L3 29l7.2-2.1a12.9 12.9 0 0 0 5.8 1.4C23 28.3 28.7 22.7 28.7 15.8 28.7 8.8 23 3 16 3zm0 23.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.3 1.3 1.4-4.2-.3-.4a10.3 10.3 0 0 1-1.6-5.5C5.7 9.9 10.3 5.4 16 5.4s10.3 4.5 10.3 10.4S21.7 26.1 16 26.1zm5.6-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.4 8.4 0 0 1-4.2-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.3 5.3 4.6 2 .8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.5.3-.7.3-1.3.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
-</button>
-
-<div class="overlay" id="overlay" hidden></div>
-<div class="modal" id="modal" role="dialog" aria-modal="true" hidden></div>
-<aside class="drawer" id="drawer" aria-label="Cart" hidden></aside>
+<div class="sheet-bg" id="sheetBg" hidden></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="demo-banner" id="demoBanner" hidden></div>
-
-<script src="js/core.js"></script>
-<script src="js/api.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/app.js"></script>
-<script src="js/story.js"></script>
-<script src="js/builder.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
 </body>
 </html>
